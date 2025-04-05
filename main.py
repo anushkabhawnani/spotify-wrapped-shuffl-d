@@ -13,7 +13,7 @@ app.secret_key = 'this-is-a-secret-key'
 
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-REDIRECT_URI = "http://localhost:5000/callback"
+REDIRECT_URI = "https://shuffld.onrender.com/callback"
 
 AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
