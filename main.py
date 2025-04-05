@@ -85,7 +85,7 @@ def get_artists_long():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/artists?limit=25&time_range=long_term', headers=headers)
@@ -114,7 +114,7 @@ def get_artists_medium():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/artists?limit=25&time_range=medium_term', headers=headers)
@@ -143,7 +143,7 @@ def get_artists_short():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/artists?limit=25&time_range=short_term', headers=headers)
@@ -172,7 +172,7 @@ def get_tracks_long():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/tracks?limit=25&time_range=long_term', headers=headers)
@@ -203,7 +203,7 @@ def get_tracks_medium():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/tracks?limit=25&time_range=medium_term', headers=headers)
@@ -234,7 +234,7 @@ def get_tracks_short():
         return redirect('/refresh-token')
 
     headers = {
-        'Authorization': f'Bearer {session['access_token']}'
+        'Authorization': f'Bearer {session["access_token"]}'
     }
 
     response = requests.get(API_BASE_URL + 'me/top/tracks?limit=25&time_range=short_term', headers=headers)
