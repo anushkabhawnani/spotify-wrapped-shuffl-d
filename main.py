@@ -1,23 +1,31 @@
-import random
+import os
+from dotenv import find_dotenv, load_dotenv
 import urllib.parse
 import requests
 from flask import Flask, redirect, request, jsonify, session, render_template
 from datetime import *
 
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path)
+
 app = Flask(__name__)
 app.secret_key = 'this-is-a-secret-key'
 
-CLIENT_ID = 'f2683a64a45149b498039ec367e457c7'
-CLIENT_SECRET = 'b96fd7bacaac45e9a6bb623421dcf742'
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 REDIRECT_URI = "http://localhost:5000/callback"
 
 AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
 API_BASE_URL = "https://api.spotify.com/v1/"
 
+# SETTING THE HOME PAGE
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# REDIRECTING THE USER TO SPOTIFY'S LOGIN PAGE
 
 @app.route('/login')
 def login():
@@ -34,6 +42,8 @@ def login():
     auth_url = f'{AUTH_URL}?{urllib.parse.urlencode(params)}'
 
     return redirect(auth_url) # this will redirect the user to the specific url provided
+
+# GETTING THE ACCESS TOKEN
 
 @app.route('/callback')
 def callback():
@@ -64,6 +74,8 @@ def callback():
 
         return redirect('/artists/long_term')
 
+# GETTING THE TOP ARTISTS FOR LONG TERM PERIOD
+
 @app.route('/artists/long_term')
 def get_artists_long():
     if 'access_token' not in session:
@@ -90,6 +102,8 @@ def get_artists_long():
 
 
     return render_template('artists_page.html', artists=artists_name)
+
+# GETTING THE TOP ARTISTS FOR MEDIUM TERM PERIOD
 
 @app.route('/artists/medium_term')
 def get_artists_medium():
@@ -118,6 +132,8 @@ def get_artists_medium():
 
     return render_template('artists_page.html', artists=artists_name)
 
+# GETTING THE TOP ARTISTS FOR SHORT TERM PERIOD
+
 @app.route('/artists/short_term')
 def get_artists_short():
     if 'access_token' not in session:
@@ -144,6 +160,8 @@ def get_artists_short():
 
 
     return render_template('artists_page.html', artists=artists_name)
+
+# GETTING THE TOP TRACKS FOR LONG TERM PERIOD
 
 @app.route('/tracks/long_term')
 def get_tracks_long():
@@ -174,6 +192,8 @@ def get_tracks_long():
 
     return render_template('tracks_page.html', tracks=tracks_name)
 
+# GETTING THE TOP TRACKS FOR MEDIUM TERM PERIOD
+
 @app.route('/tracks/medium_term')
 def get_tracks_medium():
     if 'access_token' not in session:
@@ -202,6 +222,8 @@ def get_tracks_medium():
         })
 
     return render_template('tracks_page.html', tracks=tracks_name)
+
+# GETTING THE TOP TRACKS FOR SHORT TERM PERIOD
 
 @app.route('/tracks/short_term')
 def get_tracks_short():
@@ -232,6 +254,8 @@ def get_tracks_short():
 
     return render_template('tracks_page.html', tracks=tracks_name)
 
+# GETTING THE REFRESH TOKEN ONCE THE ACCESS TOKEN EXPIRES
+
 @app.route('/refresh-token')
 def refresh_token():
     if 'refresh_token' not in session:
@@ -255,4 +279,3 @@ def refresh_token():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
-
