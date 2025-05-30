@@ -1,4 +1,4 @@
-# 🎧 Shuffl'd: Your Personalized Spotify Wrapped Anytime
+# 🎧 Shuffl'd: A Personalized Yearly Spotify Wrapped
 
 Shuffl'd is a web application that allows you to view your Spotify listening statistics at any time of the year. No need to wait until December to see your top artists and tracks—Shuffl'd provides a beautiful and interactive interface to explore your music habits whenever you like.
 
